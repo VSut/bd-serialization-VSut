@@ -16,7 +16,13 @@ public class OrderSerializer {
      */
     public static Order toOrder(String json) {
         // TODO: implement
-        return null;
+        Order reme = null;
+        try {
+            reme = MAPPER.readValue(json, Order.class);
+        } catch (Exception e) {
+            throw new OrderSerializationException("message", e);
+        }
+        return reme;
     }
 
     /**
@@ -27,6 +33,12 @@ public class OrderSerializer {
      */
     public static String toJSON(Order order) {
         // TODO: implement
-        return null;
+        String returnm = "";
+        try {
+            returnm = MAPPER.writeValueAsString(order);
+        } catch (Exception e) {
+            throw new OrderSerializationException("message",e);
+        }
+        return returnm;
     }
 }
